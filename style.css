@@ -1,0 +1,155 @@
+/* 全局樣式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Microsoft YaHei", "PingFang TC", sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* 頭部 */
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* 主體 */
+main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* 區塊樣式 */
+section {
+    background: white;
+    padding: 40px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+section h2 {
+    color: #667eea;
+    margin-bottom: 20px;
+    border-left: 5px solid #667eea;
+    padding-left: 15px;
+    font-size: 1.8rem;
+}
+
+section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+/* 技能列表 */
+.skills ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.skills li {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 1rem;
+}
+
+/* 作品卡片 */
+.card {
+    border-left: 4px solid #764ba2;
+    padding: 20px;
+    margin-bottom: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.card h3 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.card a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #667eea;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.card a:hover {
+    text-decoration: underline;
+}
+
+/* 聯絡 */
+.contact p {
+    margin: 15px 0;
+    font-size: 1.1rem;
+}
+
+.contact p::before {
+    content: "• ";
+    color: #667eea;
+}
+
+/* 頁腳 */
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #333;
+    color: white;
+    margin-top: 40px;
+}
+
+footer p {
+    opacity: 0.8;
+}
+
+/* RWD - 手機版 */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    header p {
+        font-size: 1rem;
+    }
+    
+    section {
+        padding: 25px;
+    }
+    
+    section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .skills ul {
+        flex-direction: column;
+    }
+    
+    .skills li {
+        text-align: center;
+    }
+}
