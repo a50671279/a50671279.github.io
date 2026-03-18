@@ -3,370 +3,492 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO TDK 優化 -->
-    <title>針孔攝像頭拆解與偷拍設備防範科普 - 隱私守護實驗室</title>
-    <meta name="description" content="專業分析微型針孔攝像頭硬體架構，提供酒店偷拍設備排查、無線偷錄攝像頭原理科普及隱形偷拍設備防範技巧。揭秘黑科技偷拍、免插電偷拍與遠程偷拍設備的底層技術。">
-    <meta name="keywords" content="針孔攝像頭,偷拍,針孔偷拍,微型針孔攝像頭,偷錄設備,隱形偷拍設備,無線偷錄攝像頭,隱蔽偷拍神器,小型偷拍相機,免插電偷拍,酒店偷拍,針孔鏡頭,黑科技偷拍,迷你針孔攝像頭,遠程偷拍設備,無光偷拍,超小偷拍相機">
-    
+    <title>TechInsight 卫士 - 专业防范针孔摄像头资讯与针孔摄像头小百科查询平台</title>
+    <meta name="description" id="global-seo-desc" content="为您提供最专业的防范针孔摄像头资讯与针孔摄像头小百科查询，关注隐私保护、反偷拍与网络安全知识。">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
-        
-        body { 
-            font-family: 'Noto Sans SC', sans-serif; 
-            -webkit-font-smoothing: antialiased;
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
             background-color: #f8fafc;
+            -webkit-font-smoothing: antialiased;
         }
-        
-        .article-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .article-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05); }
-        
-        .sidebar-box { border-left: 4px solid #3b82f6; }
-
-        /* 後台系統 UI */
-        #admin-modal { display: none; }
-        .glass-overlay {
-            background: rgba(15, 23, 42, 0.4);
-            backdrop-filter: blur(12px);
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            z-index: 1000; display: flex; align-items: center; justify-content: center;
-        }
-        .admin-window {
-            background: #ffffff;
-            width: 95%;
-            max-width: 850px;
-            max-height: 85vh;
-            border-radius: 30px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            display: flex;
-            flex-direction: column;
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;  
             overflow: hidden;
-            animation: slideUp 0.4s ease-out;
         }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px) scale(0.98); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-
-        .admin-scroll { overflow-y: auto; flex: 1; padding: 2.5rem; }
-        .admin-scroll::-webkit-scrollbar { width: 6px; }
-        .admin-scroll::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }
-
-        .form-group {
-            background: #ffffff;
-            border: 1px solid #f1f5f9;
-            border-radius: 20px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-        }
-
-        .input-styled {
-            width: 100%;
-            background: #f1f5f9;
-            border: 2px solid transparent;
-            border-radius: 12px;
-            padding: 0.75rem 1rem;
-            outline: none;
-            transition: all 0.2s;
-            font-size: 0.9rem;
-            color: #1e293b;
-        }
-        .input-styled:focus {
-            background: #ffffff;
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-        }
-
-        .label-caps {
-            font-size: 10px;
-            font-weight: 900;
-            color: #94a3b8;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: block;
-            margin-bottom: 0.6rem;
-            padding-left: 0.25rem;
-        }
-
-        .btn-publish {
-            background: #ef4444;
-            color: white;
-            padding: 1rem 3rem;
-            border-radius: 14px;
-            font-weight: 700;
-            transition: all 0.2s;
-            box-shadow: 0 10px 15px -3px rgba(239, 68, 68, 0.3);
-        }
-        .btn-publish:hover { transform: translateY(-2px); box-shadow: 0 15px 20px -3px rgba(239, 68, 68, 0.4); }
     </style>
 </head>
-<body class="text-gray-900 leading-relaxed">
+<body class="text-slate-800">
 
-    <!-- 頂部導覽 -->
-    <nav class="bg-white border-b border-gray-100 sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="flex items-center space-x-2">
-                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-                </div>
-                <p class="text-xl font-black tracking-tighter">隱私守護實驗室</p>
+    <!-- 导航栏 -->
+    <nav class="bg-white sticky top-0 z-50 px-6 py-4 flex justify-between items-center shadow-sm">
+        <div class="flex items-center gap-3">
+            <div class="bg-blue-600 text-white w-8 h-8 rounded-lg flex items-center justify-center font-bold shadow-sm">
+                <i class="fa-solid fa-shield-halved"></i>
             </div>
-            <div class="hidden md:flex space-x-8 text-sm font-bold text-gray-400">
-                <a href="#analyze" class="hover:text-blue-600 transition">硬件分析</a>
-                <a href="#prevention" class="hover:text-blue-600 transition">防範攻略</a>
-                <a href="#tech" class="hover:text-blue-600 transition">黑科技揭秘</a>
-                <button onclick="showLogin()" class="px-5 py-2 bg-gray-900 text-white rounded-full hover:bg-blue-600 transition shadow-lg">管理後台</button>
+            <div class="font-bold text-xl tracking-wide nav-site-title">
+                <span class="text-slate-800">TechInsight</span> <span class="text-blue-600">卫士</span>
             </div>
+        </div>
+        <div class="flex items-center gap-6 text-sm font-medium">
+            <button onclick="switchView('public')" id="nav-public" class="text-blue-600 font-bold transition">网站首页</button>
+            <button onclick="switchView('login')" id="nav-admin" class="bg-blue-50 text-blue-600 px-5 py-2 rounded-full hover:bg-blue-100 transition">管理中心</button>
         </div>
     </nav>
 
-    <!-- 麵包屑 -->
-    <div class="bg-gray-50 border-b border-gray-100 py-3">
-        <div class="max-w-6xl mx-auto px-6 text-[11px] font-bold text-gray-400 uppercase tracking-widest">
-            首頁 <span class="mx-2">/</span> 技術中心 <span class="mx-2">/</span> 科普報告
-        </div>
-    </div>
+    <!-- 主容器 -->
+    <main class="max-w-6xl mx-auto min-h-screen px-4 pb-20">
 
-    <!-- Header -->
-    <header class="bg-white py-16">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-2/3">
-                    <h1 class="text-4xl md:text-5xl font-black mb-6 text-gray-900 leading-tight">深度解析<span class="text-blue-600">微型針孔攝像頭</span>與<br>無線偷錄設備硬體原理</h1>
-                    <p class="text-gray-500 text-lg leading-relaxed">
-                        針對市面高頻出現的<span class="text-red-500 font-bold">酒店偷拍</span>現象，我們透過逆向工程分析<span class="text-blue-600 font-bold">無線偷錄攝像頭</span>的物理結構，提升公眾安全防範意識。
-                    </p>
+        <!-- 1. 网站首页 -->
+        <section id="view-public" class="hidden py-8">
+            <div class="mb-12">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="h-6 w-1.5 bg-blue-600 rounded-full"></div>
+                    <h2 class="text-2xl font-bold italic text-slate-800">防范针孔摄像头资讯</h2>
                 </div>
-                <div class="md:w-1/3 bg-blue-50/50 p-8 rounded-[32px] border border-blue-100">
-                    <p class="text-blue-900 font-black mb-3 italic">💡 安防專家建議</p>
-                    <p class="text-sm text-blue-800/70 leading-relaxed font-medium">
-                        針對最新的<span class="font-bold">無光偷拍</span>技術，建議定期排查隱藏在路由器、插座內的<span class="font-bold">針孔鏡頭</span>。
-                    </p>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- 主內容區 -->
-    <main class="max-w-6xl mx-auto px-6 py-16">
-        <div class="flex flex-col lg:flex-row gap-16">
-            <div id="article-container" class="lg:w-2/3 space-y-16">
-                <h2 class="text-xs font-black text-gray-400 uppercase tracking-[4px] mb-8 flex items-center">
-                    <span class="w-8 h-[2px] bg-blue-600 mr-4"></span>
-                    最新科普報告展示
-                </h2>
-                <!-- 文章内容开始 -->
-                <article class="article-card group">
-                    <div class="rounded-[32px] overflow-hidden mb-8 aspect-video bg-gray-100">
-                        <img src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&q=80&w=800" alt="針孔攝像頭拆解" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-                    </div>
-                    <div class="flex items-center text-[10px] font-black text-blue-600 mb-4 space-x-4 uppercase tracking-widest">
-                        <span class="bg-blue-50 px-2 py-1 rounded">免插電偷拍技術</span>
-                        <span class="text-gray-300">2025-03-11</span>
-                    </div>
-                    <h3 class="text-3xl font-bold mb-4 text-gray-900 group-hover:text-blue-600 transition">實測：<span class="text-blue-600">免插電偷拍</span>行動電源內部結構與<span class="text-blue-600">超小偷拍相機</span>模組</h3>
-                    <p class="text-gray-500 text-lg leading-relaxed mb-6">
-                        拆解發現，這類<span class="font-bold">無線偷錄攝像頭</span>多採用行動電源外觀。內置了<span class="font-bold">迷你針孔攝像頭</span>，具備<span class="font-bold">遠程實時傳輸</span>功能，孔徑極其隱蔽...
-                    </p>
-                    <a href="#contact-box" class="inline-flex items-center font-bold text-blue-600 border-b-2 border-blue-100 pb-1">閱讀分析報告 →</a>
-                </article>
-                <!-- 文章内容结束 -->
+                <!-- 电脑 3 列, 手机 2 列 -->
+                <div id="list-科普" class="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8"></div>
             </div>
 
-            <!-- 側邊欄 -->
-            <aside class="lg:w-1/3 space-y-12">
-                <div id="contact-box" class="bg-gray-900 p-10 rounded-[40px] shadow-2xl shadow-blue-900/20 text-white">
-                    <h4 class="text-2xl font-black mb-8 sidebar-box pl-4">技術諮詢</h4>
-                    <p class="text-sm text-gray-400 mb-8 leading-relaxed font-medium">
-                        諮詢<span class="text-white font-bold">微型針孔攝像頭</span>分析或<span class="text-white font-bold">防護方案</span>。
-                    </p>
-                    <div class="bg-white/5 border border-white/10 p-6 rounded-3xl text-center">
-                        <div class="w-32 h-32 bg-white rounded-2xl mx-auto mb-6 p-2">
-                            <img id="qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=SecureLab_01" class="w-full h-full">
+            <div class="mb-12">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="h-6 w-1.5 bg-emerald-500 rounded-full"></div>
+                    <h2 class="text-2xl font-bold italic text-slate-800">针孔摄像头小百科查询</h2>
+                </div>
+                <!-- 电脑 3 列, 手机 2 列 -->
+                <div id="list-3C评测" class="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8"></div>
+            </div>
+
+            <!-- 页脚 -->
+            <footer class="mt-20 bg-white rounded-[2.5rem] p-8 lg:p-12 shadow-sm border border-slate-100">
+                <div class="flex flex-col lg:flex-row justify-between items-center gap-10">
+                    <div class="text-center lg:text-left lg:max-w-md order-2 lg:order-1">
+                        <div class="flex items-center justify-center lg:justify-start gap-2 mb-4 text-blue-600 font-bold text-xl footer-site-title">
+                            <i class="fa-solid fa-shield-halved"></i> TechInsight 卫士
                         </div>
-                        <p class="text-lg font-black tracking-tight" id="contact-id">微信: SecureLab_01</p>
+                        <p id="footer-desc" class="text-gray-500 leading-relaxed mb-4">为您提供最专业的防范针孔摄像头资讯与针孔摄像头小百科查询，关注隐私保护、反偷拍与网络安全知识。</p>
+                        <div class="text-xs text-gray-400">© 2026 TechInsight 卫士版权所有</div>
+                    </div>
+                    <div class="flex gap-8 lg:gap-12 order-1 lg:order-2">
+                        <div class="flex flex-col items-center qrcode1-container">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://line.me" class="w-24 h-24 lg:w-32 lg:h-32 bg-slate-50 rounded-2xl p-2 border border-slate-100 mb-2 shadow-sm">
+                            <span class="text-xs font-bold text-gray-600">官方客服</span>
+                        </div>
+                        <div class="flex flex-col items-center qrcode2-container">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://youtube.com" class="w-24 h-24 lg:w-32 lg:h-32 bg-slate-50 rounded-2xl p-2 border border-slate-100 mb-2 shadow-sm">
+                            <span class="text-xs font-bold text-gray-600">影音频道</span>
+                        </div>
                     </div>
                 </div>
-            </aside>
-        </div>
+            </footer>
+        </section>
+
+        <!-- 2. 管理中心登录 -->
+        <section id="view-login" class="hidden p-6 mt-10">
+            <div class="bg-white rounded-3xl p-8 shadow-sm text-center max-w-md mx-auto">
+                <h2 class="text-xl font-bold mb-6 text-gray-700">管理登录</h2>
+                <input type="password" id="admin-password" placeholder="请输入密码" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 mb-4 text-center outline-none">
+                <button onclick="handleLogin()" class="w-full bg-blue-600 text-white font-bold rounded-xl px-4 py-3 hover:bg-blue-700 transition shadow-lg shadow-blue-100">登录系统</button>
+                <p id="login-error" class="text-red-500 text-sm mt-3 hidden">密码错误</p>
+            </div>
+        </section>
+
+        <!-- 3. 管理中心后台 -->
+        <section id="view-admin" class="hidden p-4 max-w-2xl mx-auto">
+            <!-- SEO 与网站设置 -->
+            <div class="bg-white rounded-3xl p-6 shadow-sm mb-6 border border-slate-100">
+                <h3 class="font-bold mb-4 flex items-center gap-2 text-blue-600"><i class="fa-solid fa-pen-to-square"></i> 网站设置与 SEO 优化</h3>
+                <div class="bg-slate-50 p-4 rounded-2xl mb-6 space-y-4">
+                    <div class="flex flex-col gap-2">
+                        <label class="text-xs font-bold text-gray-600">网站标题（导航栏/页脚显示）</label>
+                        <input type="text" id="seo-sitename" placeholder="例如：TechInsight 卫士" class="w-full p-2 rounded-xl border border-slate-200 text-sm outline-none">
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="text-xs font-bold text-gray-600">SEO 页面标题（显示在浏览器标签，建议30字以内）</label>
+                        <input type="text" id="seo-title" placeholder="例如：TechInsight 卫士 - 专业防范针孔摄像头资讯与针孔摄像头小百科查询平台" class="w-full p-2 rounded-xl border border-slate-200 text-sm outline-none" maxlength="60">
+                        <div class="text-xs text-gray-400">参考范本：TechInsight 卫士 - 专业防范针孔摄像头资讯与针孔摄像头小百科查询平台</div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="text-xs font-bold text-gray-600">SEO 关键词（用逗号分隔，建议5-8个）</label>
+                        <input type="text" id="seo-keywords" placeholder="例如：防范针孔摄像头,针孔摄像头小百科,反偷拍,隐私保护,网络安全" class="w-full p-2 rounded-xl border border-slate-200 text-sm outline-none">
+                        <div class="text-xs text-gray-400">参考范本：防范针孔摄像头,针孔摄像头小百科,反偷拍,隐私保护,网络安全</div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="text-xs font-bold text-gray-600">SEO 全局描述（显示在搜索结果，建议80字以内）</label>
+                        <input type="text" id="seo-desc" placeholder="例如：为您提供最专业的防范针孔摄像头资讯与针孔摄像头小百科查询，关注隐私保护、反偷拍与网络安全知识。" class="w-full p-2 rounded-xl border border-slate-200 text-sm outline-none" maxlength="160">
+                        <div class="text-xs text-gray-400">参考范本：为您提供最专业的防范针孔摄像头资讯与针孔摄像头小百科查询，关注隐私保护、反偷拍与网络安全知识。</div>
+                    </div>
+                </div>
+                <button onclick="saveSettings()" class="w-full bg-blue-600 text-white font-bold rounded-full py-3 shadow-md hover:bg-blue-700 transition">保存网站设置</button>
+            </div>
+
+            <!-- 页脚设置 -->
+            <div class="bg-white rounded-3xl p-6 shadow-sm mb-6 border border-slate-100">
+                <h3 class="font-bold mb-4 flex items-center gap-2 text-blue-600"><i class="fa-solid fa-copyright"></i> 页脚设置</h3>
+                <div class="bg-slate-50 p-4 rounded-2xl mb-6 space-y-4">
+                    <div class="flex flex-col gap-2">
+                        <label class="text-xs font-bold text-gray-600">页脚左侧描述文字</label>
+                        <textarea id="footer-desc-input" placeholder="例如：为您提供最专业的防范针孔摄像头资讯与针孔摄像头小百科查询，关注隐私保护、反偷拍与网络安全知识。" class="w-full p-2 rounded-xl border border-slate-200 text-sm outline-none" rows="2"></textarea>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex flex-col gap-2">
+                            <label class="text-xs font-bold text-gray-600">第一个二维码链接</label>
+                            <input type="url" id="qrcode1-url" placeholder="例如：https://line.me/XXX" class="w-full p-2 rounded-xl border border-slate-200 text-sm outline-none">
+                            <label class="text-xs font-bold text-gray-600">第一个二维码描述</label>
+                            <input type="text" id="qrcode1-text" placeholder="例如：官方客服" class="w-full p-2 rounded-xl border border-slate-200 text-sm outline-none">
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <label class="text-xs font-bold text-gray-600">第二个二维码链接</label>
+                            <input type="url" id="qrcode2-url" placeholder="例如：https://youtube.com/XXX" class="w-full p-2 rounded-xl border border-slate-200 text-sm outline-none">
+                            <label class="text-xs font-bold text-gray-600">第二个二维码描述</label>
+                            <input type="text" id="qrcode2-text" placeholder="例如：影音频道" class="w-full p-2 rounded-xl border border-slate-200 text-sm outline-none">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 文章发布 -->
+            <div class="bg-white rounded-3xl p-6 shadow-sm mb-6 border border-slate-100">
+                <h3 class="font-bold mb-4 flex items-center gap-2 text-blue-600"><i class="fa-solid fa-pen-to-square"></i> 发布文章</h3>
+                <div class="space-y-3 mb-6">
+                    <input type="text" id="post-title" placeholder="文章标题" class="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm outline-none">
+                    <select id="post-category" class="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm outline-none">
+                        <option value="科普">防范针孔摄像头资讯</option>
+                        <option value="3C评测">针孔摄像头小百科查询</option>
+                    </select>
+                    <input type="text" id="post-img" placeholder="图片网址" class="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm outline-none">
+                    <textarea id="post-content" placeholder="请输入文章内容..." class="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm h-32 outline-none"></textarea>
+                </div>
+                <button onclick="publishArticle()" class="w-full bg-[#1b9e4a] text-white font-bold rounded-full py-4 shadow-md hover:bg-green-700 transition">同步发布至云端</button>
+            </div>
+
+            <!-- 文章管理库 -->
+            <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100">
+                <div class="flex items-center gap-2 mb-4 font-bold text-gray-700"><i class="fa-regular fa-file-lines"></i> 文章管理库</div>
+                <div id="admin-article-list" class="space-y-3"></div>
+            </div>
+        </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-50 py-20 border-t border-gray-100">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <p class="text-sm font-black text-gray-400 mb-4 cursor-pointer hover:text-blue-600 transition" onclick="showLogin()">隱私守護實驗室 - 2025 專業科普站</p>
-            <div class="flex flex-wrap justify-center gap-4 text-[10px] font-bold text-gray-300 uppercase tracking-[2px]">
-                <span>Pinhole Analysis</span><span>|</span><span>Spy Camera Prevention</span><span>|</span><span>Tech Forensics</span>
-            </div>
-        </div>
-    </footer>
-
-    <!-- 後台管理控制台 -->
-    <div id="admin-modal" class="glass-overlay">
-        <div class="admin-window">
-            <div class="px-10 py-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
-                <div>
-                    <h2 class="text-2xl font-black text-gray-900">Lab 控制台</h2>
-                    <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1">Content Management System</p>
-                </div>
-                <button onclick="closeAdmin()" class="w-10 h-10 flex items-center justify-center rounded-xl bg-white border border-gray-200 text-gray-400 hover:text-red-500 transition">&times;</button>
-            </div>
-
-            <div class="admin-scroll">
-                <!-- 驗證區 -->
-                <div id="login-section" class="max-w-xs mx-auto py-20 text-center">
-                    <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-width="2.5"/></svg>
-                    </div>
-                    <input type="password" id="admin-pass" placeholder="輸入管理密鑰 (admin888)" class="input-styled text-center font-bold mb-4">
-                    <button onclick="checkPass()" class="w-full bg-blue-600 text-white p-4 rounded-xl font-black shadow-lg shadow-blue-200">登錄工作台</button>
-                </div>
-
-                <!-- 編輯區 -->
-                <div id="manager-section" class="hidden">
-                    <div class="grid grid-cols-2 gap-6 mb-12">
-                        <div class="form-group">
-                            <label class="label-caps">諮詢微信 ID</label>
-                            <input type="text" id="input-contact" class="input-styled font-bold">
-                        </div>
-                        <div class="form-group">
-                            <label class="label-caps">QR Code 數據內容</label>
-                            <input type="text" id="input-qr" class="input-styled font-bold">
-                        </div>
-                    </div>
-                    <h3 class="label-caps mb-6 ml-2 italic">科普報告清單</h3>
-                    <div id="edit-list"></div>
-                    <button onclick="addArticleRow()" class="w-full py-10 border-2 border-dashed border-gray-200 rounded-[30px] text-gray-400 font-black hover:border-blue-400 hover:text-blue-500 transition-all bg-gray-50/50">+ 新增科普文章</button>
-                </div>
-            </div>
-
-            <div id="admin-footer" class="px-10 py-6 border-t border-gray-100 bg-gray-50 flex justify-between items-center hidden">
-                <p class="text-[10px] text-gray-400 font-bold">系統狀態: <span class="text-green-500 font-black">授權中</span></p>
-                <button onclick="saveAndExport()" class="btn-publish">發布並更新代碼</button>
-            </div>
-
-            <!-- 導出區 -->
-            <div id="export-area" class="hidden p-8 bg-gray-900 border-t border-white/10">
-                <div class="flex justify-between items-center mb-4">
-                    <p class="text-[11px] text-blue-400 font-black uppercase tracking-widest">✅ 物理代碼已生成</p>
-                    <button onclick="document.getElementById('export-area').classList.add('hidden')" class="text-white/40 text-[10px] hover:text-white uppercase font-black">關閉預覽</button>
-                </div>
-                <div class="relative">
-                    <textarea id="output-html" class="w-full h-64 bg-black/40 border border-white/10 rounded-2xl p-6 text-[11px] font-mono text-gray-400 outline-none focus:text-blue-300" readonly></textarea>
-                    <div class="absolute bottom-4 right-4 text-[10px] text-gray-600 font-bold uppercase pointer-events-none">Full Source Code</div>
-                </div>
-                <div class="mt-6 bg-red-500/10 border border-red-500/20 p-4 rounded-xl text-center">
-                    <p class="text-[11px] text-red-400 font-black uppercase tracking-widest leading-relaxed">
-                        ⚠️ 重要：代碼已複製！請立即打開你的本地 index.html 檔案，<br>
-                        全選刪除並粘貼此代碼，保存後即完成物理髮布。
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        const KEY = "admin888";
-        function showLogin() { document.getElementById('admin-modal').style.display = 'flex'; }
-        function closeAdmin() { 
-            document.getElementById('admin-modal').style.display = 'none'; 
-            document.getElementById('export-area').classList.add('hidden');
-        }
-        function checkPass() {
-            if(document.getElementById('admin-pass').value === KEY) {
-                document.getElementById('login-section').classList.add('hidden');
-                document.getElementById('manager-section').classList.remove('hidden');
-                document.getElementById('admin-footer').classList.remove('hidden');
-                initEditor();
-            } else { alert('密鑰錯誤'); }
-        }
-        function initEditor() {
-            const list = document.getElementById('edit-list');
-            list.innerHTML = '';
-            document.querySelectorAll('#article-container article').forEach(art => {
-                addArticleRow(
-                    art.querySelector('span').innerText,
-                    art.querySelector('h3').innerText,
-                    art.querySelector('p').innerText,
-                    art.querySelector('img').src
-                );
-            });
-            document.getElementById('input-contact').value = document.getElementById('contact-id').innerText.replace('微信: ', '');
-        }
-        function addArticleRow(tag='', title='', desc='', img='') {
-            const div = document.createElement('div');
-            div.className = "form-group relative group";
-            div.innerHTML = `
-                <button onclick="this.parentElement.remove()" class="absolute -top-3 -right-3 w-8 h-8 bg-white text-gray-300 hover:text-red-500 border rounded-full shadow-sm transition">&times;</button>
-                <div class="grid grid-cols-4 gap-4 mb-4">
-                    <div class="col-span-1">
-                        <label class="label-caps">標籤</label>
-                        <input type="text" value="${tag}" class="input-styled art-tag">
-                    </div>
-                    <div class="col-span-3">
-                        <label class="label-caps">標題</label>
-                        <input type="text" value="${title}" class="input-styled art-title font-bold">
-                    </div>
-                </div>
-                <div class="mb-4">
-                    <label class="label-caps">封面 URL</label>
-                    <input type="text" value="${img}" class="input-styled art-img">
-                </div>
-                <label class="label-caps">簡介</label>
-                <textarea class="input-styled h-24 art-desc">${desc}</textarea>
-            `;
-            document.getElementById('edit-list').appendChild(div);
-        }
-        function saveAndExport() {
-            const contact = document.getElementById('input-contact').value;
-            const qr = document.getElementById('input-qr').value || contact;
-            let artHtml = '';
-            document.querySelectorAll('#edit-list > .form-group').forEach(row => {
-                artHtml += `
-                <article class="article-card group">
-                    <div class="rounded-[32px] overflow-hidden mb-8 aspect-video bg-gray-100">
-                        <img src="${row.querySelector('.art-img').value}" alt="科普" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
-                    </div>
-                    <div class="flex items-center text-[10px] font-black text-blue-600 mb-4 space-x-4 uppercase tracking-widest">
-                        <span class="bg-blue-50 px-2 py-1 rounded">${row.querySelector('.art-tag').value}</span>
-                        <span class="text-gray-300">${new Date().toISOString().split('T')[0]}</span>
-                    </div>
-                    <h3 class="text-3xl font-bold mb-4 text-gray-900 group-hover:text-blue-600 transition">${row.querySelector('.art-title').value}</h3>
-                    <p class="text-gray-500 text-lg leading-relaxed mb-6">${row.querySelector('.art-desc').value}</p>
-                    <a href="#contact-box" class="inline-flex items-center font-bold text-blue-600 border-b-2 border-blue-100 pb-1">閱讀分析報告 →</a>
-                </article>`;
-            });
-
-            const cleanDoc = document.documentElement.cloneNode(true);
-            const artContainer = cleanDoc.querySelector('#article-container');
-            const h2 = artContainer.querySelector('h2');
-            artContainer.innerHTML = ''; artContainer.appendChild(h2);
-            artContainer.insertAdjacentHTML('beforeend', `\n                <!-- 文章内容开始 -->${artHtml}\n                <!-- 文章内容结束 -->`);
-            cleanDoc.querySelector('#contact-id').innerText = `微信: ${contact}`;
-            cleanDoc.querySelector('#qr-img').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${qr}`;
-            
-            // 重置彈窗狀態為純淨模式
-            const modal = cleanDoc.querySelector('#admin-modal');
-            modal.style.display = 'none';
-            cleanDoc.querySelector('#login-section').classList.remove('hidden');
-            cleanDoc.querySelector('#manager-section').classList.add('hidden');
-            cleanDoc.querySelector('#admin-footer').classList.add('hidden');
-            cleanDoc.querySelector('#admin-pass').value = '';
-
-            const finalSource = "<" + "!DOCTYPE html>\n" + cleanDoc.outerHTML;
-            document.getElementById('export-area').classList.remove('hidden');
-            const output = document.getElementById('output-html');
-            output.value = finalSource;
-            output.select();
+        const DB_KEY = 'techinsight_v5_final';
+        let isLoggedIn = false;
+        
+        // 初始化文章数据，确保ID为数字类型
+        let articles = [];
+        
+        // 安全地加载数据
+        function loadArticles() {
             try {
-                document.execCommand('copy');
-                alert('【發布指令：已自動複製代碼】\n請去本地打開 index.html 進行粘貼覆蓋並保存！');
-            } catch (err) {
-                alert('代碼生成成功，請從黑色框框內手動複製。');
+                const saved = localStorage.getItem(DB_KEY + '_arts');
+                if (saved) {
+                    articles = JSON.parse(saved);
+                    // 确保所有ID都是数字类型，兼容繁体分类名称
+                    articles = articles.map(item => {
+                        item.id = Number(item.id);
+                        // 转换繁体分类为简体
+                        if (item.category === "3C評測") item.category = "3C评测";
+                        return item;
+                    });
+                } else {
+                    // 默认数据（更新为针孔摄像头相关）
+                    articles = [
+                        { id: 1710500000001, title: "针孔摄像头检测方法全解析", category: "科普", imgUrl: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600", content: "深入讲解各种场景下针孔摄像头的检测技巧和防范方法，保护个人隐私安全。", date: "2026/3/15" },
+                        { id: 1710500000002, title: "反偷拍设备效果实测对比", category: "3C评测", imgUrl: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600", content: "多款主流反偷拍设备的实际效果测试，包括检测距离、准确率、误报率等维度分析。", date: "2026/3/15" }
+                    ];
+                }
+            } catch (e) {
+                console.error('加载文章数据出错:', e);
+                // 使用默认数据
+                articles = [
+                    { id: 1710500000001, title: "针孔摄像头检测方法全解析", category: "科普", imgUrl: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600", content: "深入讲解各种场景下针孔摄像头的检测技巧和防范方法，保护个人隐私安全。", date: "2026/3/15" },
+                    { id: 1710500000002, title: "反偷拍设备效果实测对比", category: "3C评测", imgUrl: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600", content: "多款主流反偷拍设备的实际效果测试，包括检测距离、准确率、误报率等维度分析。", date: "2026/3/15" }
+                ];
             }
         }
+        
+        // 加载SEO数据（更新为针孔摄像头相关默认值）
+        let seoData = JSON.parse(localStorage.getItem(DB_KEY + '_seo')) || { 
+            siteName: "TechInsight 卫士",
+            title: "TechInsight 卫士 - 专业防范针孔摄像头资讯与针孔摄像头小百科查询平台",
+            keywords: "防范针孔摄像头,针孔摄像头小百科,反偷拍,隐私保护,网络安全",
+            desc: "为您提供最专业的防范针孔摄像头资讯与针孔摄像头小百科查询，关注隐私保护、反偷拍与网络安全知识。",
+            footerDesc: "为您提供最专业的防范针孔摄像头资讯与针孔摄像头小百科查询，关注隐私保护、反偷拍与网络安全知识。",
+            qrcode1: {
+                url: "https://line.me",
+                text: "官方客服"
+            },
+            qrcode2: {
+                url: "https://youtube.com",
+                text: "影音频道"
+            }
+        };
+
+        function init() {
+            // 加载文章数据
+            loadArticles();
+            
+            // 初始化设置输入框
+            document.getElementById('seo-sitename').value = seoData.siteName;
+            document.getElementById('seo-title').value = seoData.title;
+            document.getElementById('seo-keywords').value = seoData.keywords;
+            document.getElementById('seo-desc').value = seoData.desc;
+            document.getElementById('footer-desc-input').value = seoData.footerDesc;
+            document.getElementById('qrcode1-url').value = seoData.qrcode1.url;
+            document.getElementById('qrcode1-text').value = seoData.qrcode1.text;
+            document.getElementById('qrcode2-url').value = seoData.qrcode2.url;
+            document.getElementById('qrcode2-text').value = seoData.qrcode2.text;
+            
+            // 更新页面元素
+            updateSiteElements();
+            renderQrcodes();
+            updateSEO();
+            
+            // 先渲染列表，再绑定事件
+            renderLists();
+            bindDeleteEvents();
+            
+            switchView('public');
+        }
+        
+        // 绑定删除按钮事件
+        function bindDeleteEvents() {
+            // 移除所有现有事件
+            const deleteButtons = document.querySelectorAll('.delete-trigger');
+            deleteButtons.forEach(btn => {
+                btn.onclick = null;
+                btn.onclick = function() {
+                    const id = this.getAttribute('data-id');
+                    deleteArticleById(id);
+                };
+            });
+        }
+
+        function switchView(view) {
+            // 隐藏所有视图
+            document.getElementById('view-public').classList.add('hidden');
+            document.getElementById('view-login').classList.add('hidden');
+            document.getElementById('view-admin').classList.add('hidden');
+            
+            // 重置导航样式
+            document.getElementById('nav-public').className = "text-gray-500 transition";
+            document.getElementById('nav-admin').className = "bg-blue-50 text-blue-600 px-5 py-2 rounded-full transition";
+
+            // 显示对应视图
+            if (view === 'public') {
+                document.getElementById('view-public').classList.remove('hidden');
+                document.getElementById('nav-public').className = "text-blue-600 font-bold transition";
+                updateSEO();
+            } else if (view === 'admin' && isLoggedIn) {
+                document.getElementById('view-admin').classList.remove('hidden');
+                document.getElementById('nav-admin').className = "bg-blue-100 text-blue-600 px-5 py-2 rounded-full font-bold transition";
+            } else if (view === 'login' || (view === 'admin' && !isLoggedIn)) {
+                document.getElementById('view-login').classList.remove('hidden');
+            }
+            
+            renderLists();
+            bindDeleteEvents();
+        }
+
+        function handleLogin() {
+            if (document.getElementById('admin-password').value === '0908164000') {
+                isLoggedIn = true;
+                switchView('admin');
+            } else {
+                const err = document.getElementById('login-error');
+                err.classList.remove('hidden');
+                setTimeout(() => err.classList.add('hidden'), 2000);
+            }
+        }
+
+        function saveSettings() {
+            // 保存SEO设置
+            seoData.siteName = document.getElementById('seo-sitename').value.trim();
+            seoData.title = document.getElementById('seo-title').value.trim();
+            seoData.keywords = document.getElementById('seo-keywords').value.trim();
+            seoData.desc = document.getElementById('seo-desc').value.trim();
+            // 保存页脚设置
+            seoData.footerDesc = document.getElementById('footer-desc-input').value.trim();
+            seoData.qrcode1.url = document.getElementById('qrcode1-url').value.trim();
+            seoData.qrcode1.text = document.getElementById('qrcode1-text').value.trim();
+            seoData.qrcode2.url = document.getElementById('qrcode2-url').value.trim();
+            seoData.qrcode2.text = document.getElementById('qrcode2-text').value.trim();
+            
+            localStorage.setItem(DB_KEY + '_seo', JSON.stringify(seoData));
+            
+            // 更新页面元素
+            updateSiteElements();
+            renderQrcodes();
+            updateSEO();
+            
+            alert("网站设置保存成功！");
+        }
+
+        function publishArticle() {
+            const title = document.getElementById('post-title').value.trim();
+            if (!title) return alert("请填写文章标题");
+
+            const newArt = {
+                id: Date.now(), // 使用当前时间作为文章ID（数字类型）
+                title,
+                category: document.getElementById('post-category').value,
+                imgUrl: document.getElementById('post-img').value || "https://images.unsplash.com/photo-1550009158-9effb61970eb?w=600",
+                content: document.getElementById('post-content').value,
+                date: new Date().toLocaleDateString()
+            };
+            articles.unshift(newArt);
+            saveData();
+            
+            ['post-title', 'post-img', 'post-content'].forEach(id => document.getElementById(id).value = '');
+            alert("文章发布成功！");
+        }
+
+        // 删除文章函数
+        function deleteArticleById(id) {
+            console.log('尝试删除文章，ID:', id);
+            
+            if (!id) {
+                alert('无法删除：找不到文章ID');
+                return;
+            }
+            
+            const targetId = Number(id);
+            if (isNaN(targetId)) {
+                alert('无法删除：无效的文章ID');
+                return;
+            }
+            
+            // 查找文章是否存在
+            const articleIndex = articles.findIndex(item => item.id === targetId);
+            if (articleIndex === -1) {
+                alert('无法删除：找不到对应ID的文章');
+                console.log('当前文章列表:', articles);
+                return;
+            }
+            
+            if (confirm("确定要删除这篇文章吗？")) {
+                // 删除文章
+                articles.splice(articleIndex, 1);
+                saveData();
+                alert("文章已删除");
+                renderLists();
+                bindDeleteEvents();
+            }
+        }
+
+        function saveData() {
+            localStorage.setItem(DB_KEY + '_arts', JSON.stringify(articles));
+            renderLists();
+            bindDeleteEvents();
+        }
+
+        function renderLists() {
+            const adminList = document.getElementById('admin-article-list');
+            const listKP = document.getElementById('list-科普');
+            const list3C = document.getElementById('list-3C评测');
+            
+            if (adminList) adminList.innerHTML = '';
+            if (listKP) listKP.innerHTML = '';
+            if (list3C) list3C.innerHTML = '';
+
+            articles.forEach(art => {
+                // 处理分类显示名称
+                let categoryDisplay = art.category;
+                if (art.category === "科普") categoryDisplay = "防范针孔摄像头资讯";
+                if (art.category === "3C评测") categoryDisplay = "针孔摄像头小百科查询";
+
+                // 后台列表
+                if (adminList) {
+                    const row = document.createElement('div');
+                    row.className = "flex items-center justify-between bg-slate-50 p-4 rounded-2xl border border-slate-100 hover:bg-slate-100 transition";
+                    row.innerHTML = `
+                        <div class="flex items-center gap-4">
+                            <img src="${art.imgUrl}" class="w-12 h-12 rounded-xl object-cover shadow-sm">
+                            <div>
+                                <div class="text-sm font-bold text-slate-700 truncate w-32 lg:w-48">${art.title}</div>
+                                <div class="text-[10px] text-gray-400">${categoryDisplay} | ${art.date}</div>
+                            </div>
+                        </div>
+                        <button type="button" class="delete-trigger w-10 h-10 flex items-center justify-center text-slate-300 hover:text-red-500 transition cursor-pointer" data-id="${art.id}">
+                            <i class="fa-regular fa-trash-can text-lg"></i>
+                        </button>
+                    `;
+                    adminList.appendChild(row);
+                }
+
+                // 前台卡片
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-[2rem] overflow-hidden shadow-sm border border-slate-50 hover:shadow-xl hover:-translate-y-1 transition duration-300";
+                card.innerHTML = `
+                    <div class="aspect-video overflow-hidden">
+                        <img src="${art.imgUrl}" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 lg:p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-[10px] lg:text-xs bg-blue-50 text-blue-600 px-2 py-0.5 rounded-lg font-bold">${categoryDisplay}</span>
+                            <span class="text-[10px] lg:text-xs text-gray-300">${art.date}</span>
+                        </div>
+                        <h3 class="font-bold text-sm lg:text-lg text-slate-800 line-clamp-1 mb-2">${art.title}</h3>
+                        <p class="text-xs text-gray-400 line-clamp-2 leading-relaxed">${art.content || '暂无描述...'}</p>
+                    </div>
+                `;
+                
+                if (art.category === "科普" && listKP) listKP.appendChild(card);
+                else if (art.category === "3C评测" && list3C) list3C.appendChild(card);
+            });
+        }
+
+        function updateSiteElements() {
+            // 更新导航栏标题
+            const siteNameParts = seoData.siteName.split(' ');
+            document.querySelector('.nav-site-title').innerHTML = `<span class="text-slate-800">${siteNameParts[0]}</span> <span class="text-blue-600">${siteNameParts[1] || ''}</span>`;
+            // 更新页脚标题
+            document.querySelector('.footer-site-title').innerHTML = `<i class="fa-solid fa-shield-halved"></i> ${seoData.siteName}`;
+            // 更新页脚描述
+            document.getElementById('footer-desc').innerText = seoData.footerDesc;
+        }
+
+        function renderQrcodes() {
+            const qrcode1 = document.querySelector('.qrcode1-container');
+            const qrcode2 = document.querySelector('.qrcode2-container');
+            if (qrcode1 && qrcode2) {
+                // 生成二维码图片
+                const qr1Url = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(seoData.qrcode1.url)}`;
+                const qr2Url = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(seoData.qrcode2.url)}`;
+                qrcode1.innerHTML = `
+                    <img src="${qr1Url}" class="w-24 h-24 lg:w-32 lg:h-32 bg-slate-50 rounded-2xl p-2 border border-slate-100 mb-2 shadow-sm">
+                    <span class="text-xs font-bold text-gray-600">${seoData.qrcode1.text}</span>
+                `;
+                qrcode2.innerHTML = `
+                    <img src="${qr2Url}" class="w-24 h-24 lg:w-32 lg:h-32 bg-slate-50 rounded-2xl p-2 border border-slate-100 mb-2 shadow-sm">
+                    <span class="text-xs font-bold text-gray-600">${seoData.qrcode2.text}</span>
+                `;
+            }
+        }
+
+        function updateSEO() {
+            // 更新页面标题
+            document.title = seoData.title;
+            // 更新描述meta
+            document.getElementById('global-seo-desc').content = seoData.desc;
+            // 更新关键词meta
+            let keywordsMeta = document.querySelector('meta[name="keywords"]');
+            if (!keywordsMeta) {
+                keywordsMeta = document.createElement('meta');
+                keywordsMeta.name = "keywords";
+                document.head.appendChild(keywordsMeta);
+            }
+            keywordsMeta.content = seoData.keywords;
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            init();
+        });
     </script>
 </body>
 </html>
