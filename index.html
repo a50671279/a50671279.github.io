@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechInsight 卫士 - 专业防范针孔摄像头资讯与针孔摄像头小百科查询平台</title>
+    <meta name="description" id="global-seo-desc" content="为您提供最专业的防范针孔摄像头资讯与针孔摄像头小百科查询，关注隐私保护、反偷拍与网络安全知识。">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #f8fafc;
+            -webkit-font-smoothing: antialiased;
+        }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
+        /* 查看更多按钮样式 - 确保完全居中 */
+        .load-more-btn {
+            @apply mt-6 bg-white border border-blue-200 text-blue-600 font-bold rounded-full px-6 py-3 hover:bg-blue-50 transition shadow-sm;
+            /* 强制居中核心样式 */
+            display: block;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            text-align: center;
+            width: fit-content;
+        }
+        /* 生成图片按钮样式 */
+        .generate-img-btn {
+            @apply ml-2 bg-blue-600 text-white font-bold rounded-xl px-4 py-3 hover:bg-blue-700 transition shadow-sm;
+        }
+        /* 提示框样式优化 */
+        .prompt-input {
+            @apply w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 mt-2 text-sm outline-none;
+        }
+        /* 清空按钮样式 */
+        .clear-all-btn {
+            @apply w-full bg-red-600 text-white font-bold rounded-full py-3 shadow-md hover:bg-red-700 transition mt-4;
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- 导航栏 -->
+    <nav class="bg-white sticky top-0 z-50 px-6 py-4 flex justify-between items-center shadow-sm">
+        <div class="flex items-center gap-3">
+            <div class="bg-blue-600 text-white w-8 h-8 rounded-lg flex items-center justify-center font-bold shadow-sm">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div class="font-bold text-xl tracking-wide nav-site-title">
+                <span class="text-slate-800">TechInsight</span> <span class="text-blue-600">卫士</span>
+            </div>
+        </div>
+        <div class="flex items-center gap-6 text-sm font-medium">
+            <button onclick="switchView('public')" id="nav-public" class="text-blue-600 font-bold transition">网站首页</button>
+            <button onclick="switchView('login')" id="nav-admin" class="bg-blue-50 text-blue-600 px-5 py-2 rounded-full hover:bg-blue-100 transition">管理中心</button>
+        </div>
+    </nav>
+
+    <!-- 主容器 -->
+    <main class="max-w-6xl mx-auto min-h-screen px-4 pb-20">
+
+        <!-- 1. 网站首页 -->
+        <section id="view-public" class="hidden py-8">
+            <!-- 页脚 - 移到最顶部 -->
+            <footer class="mt-0 mb-12 bg-white rounded-[2.5rem] p-8 lg:p-12 shadow-sm border border-slate-100">
+                <div class="flex flex-col lg:flex-row justify-between items-center gap-10">
+                    <div class="text-center lg:text-left lg:max-w-md order-2 lg:order-1">
+                        <div class="flex items-center justify-center lg:justify-start gap-2 mb-4 text-blue-600 font-bold text-xl footer-site-title">
+                            <i class="fa-solid fa-shield-halved"></i> TechInsight 卫士
+                        </div>
+                        <p id="footer-desc" class="text-gray-500 leading-relaxed mb-4">为您提供最专业的防范针孔摄像头资讯与针孔摄像头小百科查询，关注隐私保护、反偷拍与网络安全知识。</p>
+                        <div class="text-xs text-gray-400">© 2026 TechInsight 卫士版权所有</div>
+                    </div>
+                    <div class="flex gap-8 lg:gap-12 order-1 lg:order-2">
+                        <div class="flex flex-col items-center qrcode1-container">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://line.me" class="w-24 h-24 lg:w-32 lg:h-32 bg-slate-50 rounded-2xl p-2 border border-slate-100 mb-2 shadow-sm">
+                            <span class="text-xs font-bold text-gray-600">官方客服</span>
+                        </div>
+                        <div class="flex flex-col items-center qrcode2-container">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://youtube.com" class="w-24 h-24 lg:w-32 lg:h-32 bg-slate-50 rounded-2xl p-2 border border-slate-100 mb-2 shadow-sm">
+                            <span class="text-xs font-bold text-gray-600">影音频道</span>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
+            <!-- 防范针孔摄像头资讯分类 -->
+            <div class="mb-12">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="h-6 w-1.5 bg-blue-600 rounded-full"></div>
+                    <h2 class="text-2xl font-bold italic text-slate-800">防范针孔摄像头资讯</h2>
+                </div>
+                <!-- 电脑 3 列, 手机 2 列 - 自适应布局 -->
+                <div id="list-科普" class="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8"></div>
+                <!-- 查看更多按钮 - 强制居中 -->
+                <button id="load-more-科普" onclick="toggleLoadAll('科普')" class="load-more-btn">
+                    <i class="fa-solid fa-plus mr-2"></i> 查看更多防范针孔摄像头资讯
+                </button>
+            </div>
+
+            <!-- 针孔摄像头小百科查询分类 -->
+            <div class="mb-12">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="h-6 w-1.5 bg-emerald-500 rounded-full"></div>
+                    <h2 class="text-2xl font-bold italic text-slate-800">针孔摄像头小百科查询</h2>
+                </div>
+                <!-- 电脑 3 列, 手机 2 列 - 自适应布局 -->
+                <div id="list-3C评测" class="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8"></div>
+                <!-- 查看更多按钮 - 强制居中 -->
+                <button id="load-more-3C评测" onclick="toggleLoadAll('3C评测')" class="load-more-btn">
+                    <i class="fa-solid fa-plus mr-2"></i> 查看更多针孔摄像头小百科
+                </button>
+            </div>
+        </section>
+
+        <!-- 2. 管理中心登录 -->
+        <section id="view-login" class="hidden p-6 mt-10">
+            <div class="bg-white rounded-3xl p-8 shadow-sm text-center max-w-md mx-auto">
+                <h2 class="text-xl font-bold mb-6 text-gray-700">管理登录</h2>
+                <input type="password" id="admin-password" placeholder="请输入密码" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 mb-4 text-center outline-none">
+                <button onclick="handleLogin()" class="w-full bg-blue-600 text-white font-bold rounded-xl px-4 py-3 hover:bg-blue-700 transition shadow-lg shadow-blue-100">登录系统</button>
+                <p id="login-error" class="text-red-500 text-sm mt-3 hidden">密码错误</p>
+            </div>
+        </section>
+
+        <!-- 3. 管理中心后台 -->
+        <section id="view-admin" class="hidden p-4 max-w-2xl mx-auto">
+            <!-- SEO 与网站设置 -->
+            <div class="bg-white rounded-3xl p-6 shadow-sm mb-6 border border-slate-100">
+                <h3 class="font-bold mb-4 flex items-center gap-2 text-blue-600"><i class="fa-solid fa-pen-to-square"></i> 网站设置与 SEO 优化</h3>
+                <div class="bg-slate-50 p-4 rounded-2xl mb-6 space-y-4">
+                    <div class="flex flex-col gap-2">
+                        <label class="text-xs font-bold text-gray-600">网站标题（导航栏/页脚显示）</label>
+                        <input type="text" id="seo-sitename" placeholder="例如：TechInsight 卫士" class="w-full p-2 rounded-xl border border-slate-200 text-sm outline-none">
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="text-xs font-bold text-gray-600">SEO 页面标题（显示在浏览器标签，建议30字以内）</label>
+                        <input type="text" id="seo-title" placeholder="例如：TechInsight 卫士 - 专业防范针孔摄像头资讯与针孔摄像头小百科查询平台" class="w-full p-2 rounded-xl border border-slate-200 text-sm outline-none" maxlength="60">
+                        <div class="text-xs text-gray-400">参考范本：TechInsight 卫士 - 专业防范针孔摄像头资讯与针孔摄像头小百科查询平台</div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="text-xs font-bold text-gray-600">SEO 关键词（用逗号分隔，建议5-8个）</label>
+                        <input type="text" id="seo-keywords" placeholder="例如：防范针孔摄像头,针孔摄像头小百科,反偷拍,隐私保护,网络安全" class="w-full p-2 rounded-xl border border-slate-200 text-sm outline-none">
+                        <div class="text-xs text-gray-400">参考范本：防范针孔摄像头,针孔摄像头小百科,反偷拍,隐私保护,网络安全</div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="text-xs font-bold text-gray-600">SEO 全局描述（显示在搜索结果，建议80字以内）</label>
+                        <input type="text" id="seo-desc" placeholder="例如：为您提供最专业的防范针孔摄像头资讯与针孔摄像头小百科查询，关注隐私保护、反偷拍与网络安全知识。" class="w-full p-2 rounded-xl border border-slate-200 text-sm outline-none" maxlength="160">
+                        <div class="text-xs text-gray-400">参考范本：为您提供最专业的防范针孔摄像头资讯与针孔摄像头小百科查询，关注隐私保护、反偷拍与网络安全知识。</div>
+                    </div>
+                </div>
+                <button onclick="saveSettings()" class="w-full bg-blue-600 text-white font-bold rounded-full py-3 shadow-md hover:bg-blue-700 transition">保存网站设置</button>
+            </div>
+
+            <!-- 页脚设置 -->
+            <div class="bg-white rounded-3xl p-6 shadow-sm mb-6 border border-slate-100">
+                <h3 class="font-bold mb-4 flex items-center gap-2 text-blue-600"><i class="fa-solid fa-copyright"></i> 页脚设置</h3>
+                <div class="bg-slate-50 p-4 rounded-2xl mb-6 space-y-4">
+                    <div class="flex flex-col gap-2">
+                        <label class="text-xs font-bold text-gray-600">页脚左侧描述文字</label>
+                        <textarea id="footer-desc-input" placeholder="例如：为您提供最专业的防范针孔摄像头资讯与针孔摄像头小百科查询，关注隐私保护、反偷拍与网络安全知识。" class="w-full p-2 rounded-xl border border-slate-200 text-sm outline-none" rows="2"></textarea>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex flex-col gap-2">
+                            <label class="text-xs font-bold text-gray-600">第一个二维码链接</label>
+                            <input type="url" id="qrcode1-url" placeholder="例如：https://line.me/XXX" class="w-full p-2 rounded-xl border border-slate-200 text-sm outline-none">
+                            <label class="text-xs font-bold text-gray-600">第一个二维码描述</label>
+                            <input type="text" id="qrcode1-text" placeholder="例如：官方客服" class="w-full p-2 rounded-xl border border-slate-200 text-sm outline-none">
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <label class="text-xs font-bold text-gray-600">第二个二维码链接</label>
+                            <input type="url" id="qrcode2-url" placeholder="例如：https://youtube.com/XXX" class="w-full p-2 rounded-xl border border-slate-200 text-sm outline-none">
+                            <label class="text-xs font-bold text-gray-600">第二个二维码描述</label>
+                            <input type="text" id="qrcode2-text" placeholder="例如：影音频道" class="w-full p-2 rounded-xl border border-slate-200 text-sm outline-none">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 文章发布 -->
+            <div class="bg-white rounded-3xl p-6 shadow-sm mb-6 border border-slate-100">
+                <h3 class="font-bold mb-4 flex items-center gap-2 text-blue-600"><i class="fa-solid fa-pen-to-square"></i> 发布文章</h3>
+                <div class="space-y-3 mb-6">
+                    <input type="text" id="post-title" placeholder="文章标题" class="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm outline-none">
+                    <select id="post-category" class="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm outline-none">
+                        <option value="科普">防范针孔摄像头资讯</option>
+                        <option value="3C评测">针孔摄像头小百科查询</option>
+                    </select>
+                    <!-- 图片网址输入框 + 豆包生成图片按钮 -->
+                    <div class="flex gap-2">
+                        <input type="text" id="post-img" placeholder="图片网址（可点击右侧按钮生成）" class="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm outline-none">
+                        <button onclick="generateImageByDoubao()" class="generate-img-btn">
+                            <i class="fa-solid fa-image mr-1"></i> 豆包生成
+                        </button>
+                    </div>
+                    <textarea id="post-content" placeholder="请输入文章内容..." class="w-full bg-slate-50 border border-slate-100 rounded-xl px-4 py-3 text-sm h-32 outline-none"></textarea>
+                </div>
+                <button onclick="publishArticle()" class="w-full bg-[#1b9e4a] text-white font-bold rounded-full py-4 shadow-md hover:bg-green-700 transition">同步发布至云端</button>
+            </div>
+
+            <!-- 文章管理库 -->
+            <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100">
+                <div class="flex items-center gap-2 mb-4 font-bold text-gray-700"><i class="fa-regular fa-file-lines"></i> 文章管理库</div>
+                <!-- 新增清空所有文章按钮 -->
+                <button onclick="clearAllArticles()" class="clear-all-btn">
+                    <i class="fa-solid fa-trash-can mr-2"></i> 清空所有文章
+                </button>
+                <div id="admin-article-list" class="space-y-3 mt-4"></div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const DB_KEY = 'techinsight_v5_final';
+        let isLoggedIn = false;
+        
+        // 初始化文章数据，确保ID为数字类型
+        let articles = [];
+        
+        // 记录分类的加载状态（默认是初始状态，false=未加载全部，true=已加载全部）
+        const loadState = {
+            '科普': false,
+            '3C评测': false
+        };
+        
+        // 获取当前屏幕配置（自适应）
+        function getScreenConfig(category) {
+            const isDesktop = window.innerWidth >= 1024; // lg断点
+            return {
+                '科普': isDesktop ? { perRow: 3, maxRows: 2, maxTotal: 6 } : { perRow: 2, maxRows: 2, maxTotal: 4 },
+                '3C评测': isDesktop ? { perRow: 3, maxRows: 4, maxTotal: 12 } : { perRow: 2, maxRows: 4, maxTotal: 8 }
+            }[category];
+        }
+        
+        // 监听窗口大小变化，重新加载文章
+        window.addEventListener('resize', function() {
+            // 窗口变化时重置为初始状态
+            loadState['科普'] = false;
+            loadState['3C评测'] = false;
+            initLoad('科普');
+            initLoad('3C评测');
+        });
+        
+        // 安全地加载数据 - 优化版
+        function loadArticles() {
+            try {
+                // 清空默认数据，只保留空数组（核心修改点）
+                articles = [];
+                
+                // 尝试读取本地存储，如果有则合并数据
+                const saved = localStorage.getItem(DB_KEY + '_arts');
+                if (saved) {
+                    try {
+                        const savedArticles = JSON.parse(saved);
+                        // 确保格式正确
+                        if (Array.isArray(savedArticles)) {
+                            // 合并数据，去重（根据ID）
+                            const existingIds = articles.map(item => item.id);
+                            const newArticles = savedArticles.filter(item => {
+                                item.id = Number(item.id);
+                                if (item.category === "3C評測") item.category = "3C评测";
+                                return !existingIds.includes(item.id);
+                            });
+                            articles = [...articles, ...newArticles];
+                        }
+                    } catch (e) {
+                        console.warn('本地存储数据格式错误，使用默认数据:', e);
+                    }
+                }
+                
+                // 重新保存数据到本地存储
+                localStorage.setItem(DB_KEY + '_arts', JSON.stringify(articles));
+                
+            } catch (e) {
+                console.error('加载文章数据失败:', e);
+                articles = [];
+            }
+            
+            // 强制渲染文章列表（解决首次加载不显示问题）
+            initLoad('科普');
+            initLoad('3C评测');
+            if (isLoggedIn) {
+                renderAdminArticleList();
+            }
+        }
+
+        // 切换视图（首页/登录/管理后台）
+        function switchView(viewName) {
+            // 隐藏所有视图
+            document.getElementById('view-public').classList.add('hidden');
+            document.getElementById('view-login').classList.add('hidden');
+            document.getElementById('view-admin').classList.add('hidden');
+            
+            // 激活对应视图
+            if (viewName === 'public') {
+                document.getElementById('view-public').classList.remove('hidden');
+                // 强制重新加载文章
+                loadArticles();
+            } else if (viewName === 'login') {
+                document.getElementById('view-login').classList.remove('hidden');
+            } else if (viewName === 'admin' && isLoggedIn) {
+                document.getElementById('view-admin').classList.remove('hidden');
+                renderAdminArticleList(); // 渲染管理后台文章列表
+            }
+        }
+
+        // 初始化加载（显示默认数量的文章）
+        function initLoad(category) {
+            const screenConfig = getScreenConfig(category);
+            const listContainer = document.getElementById(`list-${category}`);
+            const loadMoreBtn = document.getElementById(`load-more-${category}`);
+            
+            // 重置容器
+            listContainer.innerHTML = '';
+            // 重置加载状态
+            loadState[category] = false;
+            // 恢复按钮文字
+            loadMoreBtn.innerHTML = category === '科普' 
+                ? '<i class="fa-solid fa-plus mr-2"></i> 查看更多防范针孔摄像头资讯'
+                : '<i class="fa-solid fa-plus mr-2"></i> 查看更多针孔摄像头小百科';
+            
+            // 筛选对应分类的文章
+            const categoryArticles = articles.filter(art => art.category === category);
+            const total = categoryArticles.length;
+            const displayCount = screenConfig.maxTotal; // 默认显示数量
+            const end = Math.min(displayCount, total);
+            
+            // 渲染默认数量的文章
+            for (let i = 0; i < end; i++) {
+                const art = categoryArticles[i];
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition border border-slate-100';
+                card.innerHTML = `
+                    <img src="${art.imgUrl}" class="w-full h-40 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2 line-clamp-2">${art.title}</h3>
+                        <p class="text-gray-500 text-sm line-clamp-2 mb-3">${art.content}</p>
+                        <div class="text-xs text-gray-400">${art.date}</div>
+                    </div>
+                `;
+                listContainer.appendChild(card);
+            }
+            
+            // 如果默认数量 >= 总数，隐藏按钮（但按需求保留，用于还原）
+            loadMoreBtn.classList.remove('hidden');
+        }
+
+        // 切换加载全部/还原初始状态
+        function toggleLoadAll(category) {
+            const listContainer = document.getElementById(`list-${category}`);
+            const loadMoreBtn = document.getElementById(`load-more-${category}`);
+            const categoryArticles = articles.filter(art => art.category === category);
+            
+            // 如果未加载全部 → 加载全部
+            if (!loadState[category]) {
+                listContainer.innerHTML = '';
+                // 渲染所有文章
+                categoryArticles.forEach(art => {
+                    const card = document.createElement('div');
+                    card.className = 'bg-white rounded-2xl shadow-sm overflow-hidden hover:shadow-md transition border border-slate-100';
+                    card.innerHTML = `
+                        <img src="${art.imgUrl}" class="w-full h-40 object-cover">
+                        <div class="p-4">
+                            <h3 class="font-bold text-lg mb-2 line-clamp-2">${art.title}</h3>
+                            <p class="text-gray-500 text-sm line-clamp-2 mb-3">${art.content}</p>
+                            <div class="text-xs text-gray-400">${art.date}</div>
+                        </div>
+                    `;
+                    listContainer.appendChild(card);
+                });
+                // 更新状态和按钮文字
+                loadState[category] = true;
+                loadMoreBtn.innerHTML = category === '科普'
+                    ? '<i class="fa-solid fa-rotate-left mr-2"></i> 收起多余资讯'
+                    : '<i class="fa-solid fa-rotate-left mr-2"></i> 收起多余小百科';
+            } 
+            // 已加载全部 → 还原初始状态
+            else {
+                initLoad(category);
+            }
+        }
+
+        // 管理后台登录
+        function handleLogin() {
+            const password = document.getElementById('admin-password').value;
+            const errorEl = document.getElementById('login-error');
+            
+            if (password === '0908164000') { // 密码修改为0908164000
+                isLoggedIn = true;
+                errorEl.classList.add('hidden');
+                switchView('admin');
+            } else {
+                errorEl.classList.remove('hidden');
+            }
+        }
+
+        // 保存网站设置
+        function saveSettings() {
+            const siteName = document.getElementById('seo-sitename').value;
+            const seoTitle = document.getElementById('seo-title').value;
+            const seoKeywords = document.getElementById('seo-keywords').value;
+            const seoDesc = document.getElementById('seo-desc').value;
+            const footerDesc = document.getElementById('footer-desc-input').value;
+            const qrcode1Url = document.getElementById('qrcode1-url').value;
+            const qrcode1Text = document.getElementById('qrcode1-text').value;
+            const qrcode2Url = document.getElementById('qrcode2-url').value;
+            const qrcode2Text = document.getElementById('qrcode2-text').value;
+            
+            // 更新页面显示
+            if (siteName) {
+                document.querySelector('.nav-site-title').innerHTML = `<span class="text-slate-800">${siteName.split(' ')[0] || 'TechInsight'}</span> <span class="text-blue-600">${siteName.split(' ')[1] || '卫士'}</span>`;
+                document.querySelector('.footer-site-title').innerHTML = `<i class="fa-solid fa-shield-halved"></i> ${siteName}`;
+            }
+            if (seoTitle) document.title = seoTitle;
+            if (seoDesc) document.getElementById('global-seo-desc').content = seoDesc;
+            if (footerDesc) document.getElementById('footer-desc').textContent = footerDesc;
+            
+            // 更新二维码
+            if (qrcode1Url) document.querySelector('.qrcode1-container img').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrcode1Url)}`;
+            if (qrcode1Text) document.querySelector('.qrcode1-container span').textContent = qrcode1Text;
+            if (qrcode2Url) document.querySelector('.qrcode2-container img').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrcode2Url)}`;
+            if (qrcode2Text) document.querySelector('.qrcode2-container span').textContent = qrcode2Text;
+            
+            // 保存到本地存储
+            const settings = {
+                siteName, seoTitle, seoKeywords, seoDesc,
+                footerDesc, qrcode1Url, qrcode1Text, qrcode2Url, qrcode2Text
+            };
+            localStorage.setItem(DB_KEY + '_settings', JSON.stringify(settings));
+            
+            alert('网站设置保存成功！');
+        }
+
+        // 豆包生成图片功能
+        function generateImageByDoubao() {
+            // 弹出提示框让用户输入图片描述
+            const imgPrompt = prompt("请输入图片描述（例如：针孔摄像头检测工具实拍图、酒店房间防偷拍排查场景）", "针孔摄像头防范相关图片");
+            
+            // 如果用户取消输入，直接返回
+            if (!imgPrompt) return;
+            
+            // 模拟豆包生成图片（实际项目中需调用豆包图片生成API）
+            // 这里使用稳定的图片占位服务，实际使用时替换为豆包API返回的图片URL
+            const generatedImgUrl = `https://picsum.photos/seed/${encodeURIComponent(imgPrompt)}/800/600`;
+            
+            // 自动填入图片网址输入框
+            document.getElementById('post-img').value = generatedImgUrl;
+            
+            // 提示用户生成成功
+            alert(`图片生成成功！已自动填入网址\n\n生成的图片描述：${imgPrompt}\n图片网址：${generatedImgUrl}`);
+        }
+
+        // 发布文章 - 优化版
+        function publishArticle() {
+            const title = document.getElementById('post-title').value;
+            const category = document.getElementById('post-category').value;
+            const imgUrl = document.getElementById('post-img').value;
+            const content = document.getElementById('post-content').value;
+            
+            if (!title || !category || !imgUrl || !content) {
+                alert('请填写完整的文章信息！');
+                return;
+            }
+            
+            // 生成唯一ID（时间戳）
+            const newId = Date.now();
+            // 获取当前日期
+            const now = new Date();
+            const dateStr = `${now.getFullYear()}/${now.getMonth() + 1}/${now.getDate()}`;
+            
+            // 创建新文章对象
+            const newArticle = {
+                id: newId,
+                title: title,
+                category: category,
+                imgUrl: imgUrl,
+                content: content,
+                date: dateStr
+            };
+            
+            // 添加到文章列表
+            articles.unshift(newArticle); // 新增文章放在最前面
+            // 保存到本地存储
+            localStorage.setItem(DB_KEY + '_arts', JSON.stringify(articles));
+            
+            // 刷新前端显示（关键修复：无论当前视图是哪个，都刷新前台列表）
+            initLoad(category);
+            // 如果是展开状态，重新加载全部
+            if (loadState[category]) {
+                toggleLoadAll(category);
+            }
+            
+            if (isLoggedIn) {
+                renderAdminArticleList();
+            }
+            
+            // 清空表单
+            document.getElementById('post-title').value = '';
+            document.getElementById('post-img').value = '';
+            document.getElementById('post-content').value = '';
+            
+            alert('文章发布成功！');
+        }
+
+        // 渲染管理后台文章列表
+        function renderAdminArticleList() {
+            const listContainer = document.getElementById('admin-article-list');
+            listContainer.innerHTML = '';
+            
+            // 按ID倒序排列（最新的在前）
+            const sortedArticles = [...articles].sort((a, b) => b.id - a.id);
+            
+            sortedArticles.forEach(art => {
+                const item = document.createElement('div');
+                item.className = 'bg-slate-50 rounded-xl p-4 flex flex-col';
+                item.innerHTML = `
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-full">${art.category}</span>
+                        <span class="text-xs text-gray-400">${art.date}</span>
+                    </div>
+                    <h4 class="font-bold text-sm mb-1">${art.title}</h4>
+                    <p class="text-xs text-gray-500 line-clamp-2 mb-3">${art.content}</p>
+                    <div class="flex gap-2 mt-auto">
+                        <button onclick="editArticle(${art.id})" class="text-xs bg-blue-50 text-blue-600 px-3 py-1 rounded-lg hover:bg-blue-100 transition">编辑</button>
+                        <button onclick="deleteArticle(${art.id})" class="text-xs bg-red-50 text-red-600 px-3 py-1 rounded-lg hover:bg-red-100 transition">删除</button>
+                    </div>
+                `;
+                listContainer.appendChild(item);
+            });
+        }
+
+        // 编辑文章
+        function editArticle(articleId) {
+            const article = articles.find(art => art.id === articleId);
+            if (!article) return;
+            
+            // 填充表单
+            document.getElementById('post-title').value = article.title;
+            document.getElementById('post-category').value = article.category;
+            document.getElementById('post-img').value = article.imgUrl;
+            document.getElementById('post-content').value = article.content;
+            
+            // 滚动到发布文章区域
+            document.getElementById('view-admin').scrollTop = document.getElementById('view-admin').scrollHeight;
+            
+            // 提示用户
+            alert('已将文章信息填充到发布表单，修改后点击"同步发布至云端"即可更新！');
+        }
+
+        // 删除文章 - 修复前台同步问题
+        function deleteArticle(articleId) {
+            if (!confirm('确定要删除这篇文章吗？删除后无法恢复！')) return;
+            
+            // 找到要删除文章的分类
+            const deletedArticle = articles.find(art => art.id === articleId);
+            const deletedCategory = deletedArticle ? deletedArticle.category : '';
+            
+            // 过滤掉要删除的文章
+            articles = articles.filter(art => art.id !== articleId);
+            // 保存到本地存储
+            localStorage.setItem(DB_KEY + '_arts', JSON.stringify(articles));
+            
+            // 刷新显示 - 关键修复：强制刷新所有分类的前台列表
+            initLoad('科普');
+            initLoad('3C评测');
+            
+            // 如果分类处于展开状态，重新加载该分类的全部内容
+            if (deletedCategory && loadState[deletedCategory]) {
+                toggleLoadAll(deletedCategory);
+            }
+            
+            // 刷新管理后台列表
+            if (isLoggedIn) {
+                renderAdminArticleList();
+            }
+            
+            alert('文章删除成功！前台已同步更新');
+        }
+
+        // 新增：清空所有文章功能 - 修复前台同步问题
+        function clearAllArticles() {
+            // 二次确认，防止误操作
+            if (!confirm('⚠️ 警告：此操作将清空所有文章（包括本地存储的文章），且无法恢复！\n\n确定要继续吗？')) {
+                return;
+            }
+            
+            // 清空文章数组
+            articles = [];
+            // 清空本地存储
+            localStorage.setItem(DB_KEY + '_arts', JSON.stringify(articles));
+            
+            // 关键修复：强制刷新所有前台列表
+            initLoad('科普');
+            initLoad('3C评测');
+            
+            // 重置加载状态
+            loadState['科普'] = false;
+            loadState['3C评测'] = false;
+            
+            // 刷新管理后台列表
+            if (isLoggedIn) {
+                renderAdminArticleList();
+            }
+            
+            alert('✅ 所有文章已成功清空！前台已同步更新');
+        }
+
+        // 页面加载时自动加载首页
+        window.onload = function() {
+            switchView('public');
+            // 尝试加载保存的设置
+            const savedSettings = localStorage.getItem(DB_KEY + '_settings');
+            if (savedSettings) {
+                try {
+                    const settings = JSON.parse(savedSettings);
+                    if (settings.siteName) {
+                        document.querySelector('.nav-site-title').innerHTML = `<span class="text-slate-800">${settings.siteName.split(' ')[0] || 'TechInsight'}</span> <span class="text-blue-600">${settings.siteName.split(' ')[1] || '卫士'}</span>`;
+                        document.querySelector('.footer-site-title').innerHTML = `<i class="fa-solid fa-shield-halved"></i> ${settings.siteName}`;
+                    }
+                    if (settings.seoTitle) document.title = settings.seoTitle;
+                    if (settings.seoDesc) document.getElementById('global-seo-desc').content = settings.seoDesc;
+                    if (settings.footerDesc) document.getElementById('footer-desc').textContent = settings.footerDesc;
+                    if (settings.qrcode1Url) document.querySelector('.qrcode1-container img').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(settings.qrcode1Url)}`;
+                    if (settings.qrcode1Text) document.querySelector('.qrcode1-container span').textContent = qrcode1Text;
+                    if (settings.qrcode2Url) document.querySelector('.qrcode2-container img').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(settings.qrcode2Url)}`;
+                    if (settings.qrcode2Text) document.querySelector('.qrcode2-container span').textContent = qrcode2Text;
+                    
+                    // 填充设置表单
+                    document.getElementById('seo-sitename').value = settings.siteName || '';
+                    document.getElementById('seo-title').value = settings.seoTitle || '';
+                    document.getElementById('seo-keywords').value = settings.seoKeywords || '';
+                    document.getElementById('seo-desc').value = settings.seoDesc || '';
+                    document.getElementById('footer-desc-input').value = settings.footerDesc || '';
+                    document.getElementById('qrcode1-url').value = settings.qrcode1Url || '';
+                    document.getElementById('qrcode1-text').value = settings.qrcode1Text || '';
+                    document.getElementById('qrcode2-url').value = settings.qrcode2Url || '';
+                    document.getElementById('qrcode2-text').value = settings.qrcode2Text || '';
+                } catch (e) {
+                    console.warn('加载保存的设置失败:', e);
+                }
+            }
+        };
+    </script>
+</body>
+</html>
